@@ -1,0 +1,192 @@
+You're an expert who answers questions using information from the following documents. Answer naturally and conversationally, as if you're explaining the topic to someone, but never explicitly mention the context or use phrases like 'according to the context' or 'the document says'. Format your answer using Markdown syntax to improve readability. Use **bold** for important concepts, bullet or numbered lists for items, and headings where appropriate. For mathematical formulas, use LaTeX notation enclosed in $ symbols for inline formulas or $$ for block formulas. Example: $D_j = D_k + d_{kj}$ for an inline formula or $$D_j = D_k + d_{kj}$$ for a separate block formula. Follow these guidelines:
+1. Use exclusively information from the provided documents, without adding external details or making unsupported assumptions.
+2. Never exclude important information that contributes to understanding the topic requested in the question.
+3. Always answer in detail without ever limiting the length of your response.
+4. Use appropriate technical language from the documents, maintaining terminological precision.
+5. Structure the response in a fluid and conversational way, like a natural explanation.
+6. If the documents don't contain sufficient information, honestly answer that you don't have enough information, but do so naturally.
+7. Maintain a professional but accessible tone, avoiding rigid academic formulations.
+Here are the reference documents: 5 Lo specifico valore che assume il livello, per esempio il numero di volt, non ha importanza essendo un fattore 
+meramente realizzativo.
+PattavinaReti2021.indb   394PattavinaReti2021.indb   394 14/01/2022   16:09:4814/01/2022   16:09:487.4 Codifica di linea  395
+ricevuto. È evidente che una lunga stringa di simboli 0 o di simboli 1 nella codifica unipolare 
+rende difficile la ricostruzione del cronosegnale in ricezione. Le codifiche polare e bipolare A
+B63456 111213141516171819202122232425Ttot
+78910
+Figura 3.12 Diagramma spazio-temporale secondo l’Esempio 3.5.
+PattavinaReti2021.indb   114PattavinaReti2021.indb   114 14/01/2022   16:08:3014/01/2022   16:08:303.2 Protocolli continuous ARQ  115
+alcune UI corrette ricevute fuori sequenza, poiché non rientrano nell’apertura corrente della 
+finestra di ricezione. Analogamente, assumere Ws < Wr significa predisporre un’apertura della PattavinaReti2021.indb   237PattavinaReti2021.indb   237 14/01/2022   16:09:1214/01/2022   16:09:12238  Capitolo 4 – Strato di applicazione
+4. e così via fino a che un NS interrogato non dispone dell’indirizzo IP richiesto, che 
+viene trasferito al NS locale che lo inoltra al client richiedente.
+A seconda del tipo di procedura adottata per lo scambio di messaggi tra NS, si possono iden -
+tificare due tipi di risoluzione dei nomi: risoluzione  iterativa  e risoluzione  ricorsiva . Nella dsj. 
+2. Al secondo passo, all’iterazione h -esima per ogni nodo si mantiene il percorso del 
+passo precedente, a meno che non si renda disponibile un nuovo percorso lungo h rami 
+con costo inferiore rispetto a quello calcolato all’iterazione h – 1. Questo passo viene 
+ripetuto per valori crescenti di h, che rappresenta il numero massimo di rami che uni -
+sce il nodo s al nodo generico. 
+3. L ’algoritmo ha termine al terzo passo, quando non si verificano più abbassamenti di A F
+B -
+C C
+D F
+E E
+F F
+(a) (b)
+PattavinaReti2021.indb   63PattavinaReti2021.indb   63 14/01/2022   16:08:1314/01/2022   16:08:1364  Capitolo 2 – Concetti base delle reti
+L ’evento di ricezione fuori sequenza  dei pacchetti può naturalmente verificarsi in una rete di 
+tipo datagramma a causa della diversità dei percorsi lungo i quali vengono instradati i singoli 
+pacchetti, che possono quindi subire ritardi diversi. L ’esempio di Figura 2.15a mostra che il 6
+ns.deib.polimi.itns.polimi.itns.itroot nam e
+server
+4
+73
+8
+92
+101
+ns.math.auckl and.ac .nz
+Figura 4.11 Risoluzione iterativa del nomi secondo l’Esempio 4.1.
+ns.p olimi.itns.itrootnam e
+server
+4
+53
+6
+81
+ns.math.auckl and. ac.n z2
+7
+Figura 4.12 Risoluzione ricorsiva del nomi secondo l’Esempio 4.2.
+PattavinaReti2021.indb   239PattavinaReti2021.indb   239 14/01/2022   16:09:1314/01/2022   16:09:13240  Capitolo 4 – Strato di applicazione PattavinaReti2021.indb   112PattavinaReti2021.indb   112 14/01/2022   16:08:2914/01/2022   16:08:293.2 Protocolli continuous ARQ  113
+3, solo dopo la corretta ricezione dell’UI numero 4, che indica a B la mancata ricezione (corret -
+ta) dell’UI numero 3. La stazione B quindi scarta l’UI numero 4 e le successive UI numero 5 e 
+6, in quanto tutte non ammesse dalla finestra di ricezione (esse sono ricevute fuori sequenza). distributed queue dual bus (DQDB)  429
+distribution frame (DF)  404
+distribution system (DS)  458
+domain name system (DNS)  26, 32, 227, 231
+dominio
+di broadcast  491
+di collisione  439, 442, 491
+don’t fragment (DF)  312
+doppino
+categorie  8
+non schermato  7
+schermato  7
+downward multiplexing  30
+DSL
+asimmetrico  407
+simmetrico  407, 410
+DSL access multiplexer (DSLAM)  407
+duplexing  77, 408
+dynamic host configuration protocol (DHCP)  
+227, 273, 358
+dynamic, porte  273
+E
+efficienza  106, 122 0 0 279010 -2849ID
+0 1 279010 -1479
+185 0 279011 480-2849
+185 1 279011 480-2031
+254 1 279012 032-2583
+323 0 27901- 25842849R3-R4
+R3-R2b
+R2a-R4
+R2a-R4
+R2a-R4C-R3Length
+2870
+1500
+1390
+572
+572
+286
+0 0 279010 -2849R4-E 2870
+Figura 6.5 Frammentazione di datagramma IP secondo l’Esempio 6.1.
+PattavinaReti2021.indb   316PattavinaReti2021.indb   316 14/01/2022   16:09:2914/01/2022   16:09:296.4 Indirizzamento IP  317 allora ruota la propria finestra in ricezione per accettare le successive UI numerate da 1 a 7. 
+A causa di un errore, il riscontro si perde, così che la stazione A inizia a ritrasmettere le UI 
+per scadenza del time-out, a partire dall’UI numero 2. La stazione B accetta questa UI, poiché 
+rientra nella sua finestra in ricezione, senza accorgersi che è la ripetizione di un’UI già rice -
+vuta. Si può quindi facilmente dedurre la condizione che garantisce l’assenza di ambiguità nel Supporto canale 
+vocaleNo No Si Si Si
+PattavinaReti2021.indb   412PattavinaReti2021.indb   412 14/01/2022   16:09:5214/01/2022   16:09:528.3 Accesso in fibra ottica  413
+8.3 Accesso in fibra ottica
+La pluralità di servizi fruibili attraverso Internet richiede ormai la disponibilità di accessi con 
+velocità minime di decine, a volte centinaia, di Mbit/s. Le reti di accesso in fibra ottica sareb -
+bero abbondantemente in grado di soddisfare questo requisito, ma una disponibilità capillare di risposta verso un NS a uno specifico messaggio di domanda inviato dallo stesso 
+NS;
+31 16 24 8 0
+1
+2
+3ANcoun t QDcountIdentifi er
+ARcoun t
+QuestionBit
+Q
+ROpcodeA
+AT
+CR
+DR
+AResRcod e
+NScoun t
+Answer
+Authority
+Addition al
+Figura 4.10 Formato dei messaggi nel protocollo DNS. 
+PattavinaReti2021.indb   236PattavinaReti2021.indb   236 14/01/2022   16:09:1214/01/2022   16:09:124.3 Nomi di dominio - DNS  237
+• QR (1 bit): distingue un messaggio di richiesta ( QR = 0) da un messaggio di risposta PattavinaReti2021.indb   231PattavinaReti2021.indb   231 14/01/2022   16:09:0914/01/2022   16:09:09232  Capitolo 4 – Strato di applicazione
+di guasti nella rete. Inoltre, la dislocazione geografica distribuita, che permette di interrogare 
+un server in prossimità del client richiedente, consente di contenere il tempo di ritardo richie -
+sto per svolgere la risoluzione di un nome. 
+4.3.1 Gerarchia dei nomi PattavinaReti2021.indb   346PattavinaReti2021.indb   346 14/01/2022   16:09:3614/01/2022   16:09:366.5 Protocolli di instradamento  347
+Tabella 6.15 Applicazione dell’algoritmo di Dijkstra secondo l’Esempio 6.22.
+B C D E F
+Passo M DBPBDCPCDDPDDEPEDFPF
+0 A 1 A 3 A
+1 A,B 4 B 6 B 2 B
+2 A,B,F 4 B 8 F 4 F
+3 A,B,C,F 6 C 4 F
+4 A,B,C,E,F 5 E
+5 A,B,C,D,E,F
+rende disponibile un nuovo percorso più breve verso la radice; infatti il nodo D si trova a PattavinaReti2021.indb   176PattavinaReti2021.indb   176 14/01/2022   16:08:5214/01/2022   16:08:523.7 Instradamento senza tabella  177
+Il controllo del traffico interno si può ottenere prevedendo che ogni nodo scarti un’UI che ha 
+già esaurito il massimo numero di “salti” (nodi attraversati) consentito dall’algoritmo, oppure 
+che riconosca un’UI già transitata, così da poterla scartare. 
+La prima tecnica è la più semplice poiché è sufficiente dotare l’UI che viene immessa in Caso To  
+DSFrom 
+DSAddress 1 Address 2 Address 3 Address 4 Tipo di 
+trama
+A 0 0Indirizzo di 
+destinazioneIndirizzo 
+sorgenteIdentificatore 
+di BSS-All’interno del 
+BSS
+B 0 1Indirizzo di 
+destinazioneAP 
+trasmittenteIndirizzo 
+sorgente-Entrante nel 
+BSS
+C 1 0 AP riceventeIndirizzo 
+sorgenteIndirizzo di 
+destinazione-Uscente dal 
+BSS
+D 1 1 AP riceventeAP 
+trasmittenteIndirizzo di 
+destinazioneIndirizzo 
+sorgenteDa BSS a 
+BSS 2.2.3 Perdita 53
+2.3 Tecniche di commutazione 55
+2.3.1 Commutazione di pacchetto 55
+2.3.2 Commutazione di circuito 59
+2.3.3 Servizio datagramma 62
+2.3.4 Servizio circuito virtuale 65
+2.3.5 Confronto dei servizi 71
+2.3.6 Aspetti protocollari nella modalità di commutazione 73
+PattavinaReti2021.indb   5PattavinaReti2021.indb   5 14/01/2022   16:07:5714/01/2022   16:07:57VI   Sommario
+2.4 Tecniche di multiplazione 75
+2.4.1 Tassonomia delle tecniche di multiplazione 76 PattavinaReti2021.indb   344PattavinaReti2021.indb   344 14/01/2022   16:09:3514/01/2022   16:09:356.5 Protocolli di instradamento  345
+request  (LSR). Il meccanismo di instradamento dei messaggi LSU è di tipo flooding  (vedi 
+Paragrafo 3.7.2): ogni router che riceve messaggi LSU li rilancia su tutte le proprie porte 
+uscenti, tranne su quella dove il messaggio è stato ricevuto. L ’importanza associata al corretto PattavinaReti2021.indb   335PattavinaReti2021.indb   335 14/01/2022   16:09:3314/01/2022   16:09:33336  Capitolo 6 – Strato di rete
+L ’aggregazione degli indirizzi che consente di limitare la dimensione delle tabelle di instra -
+damento può aver luogo in tutti i livelli della gerarchia di Internet, considerando che i blocchi 
+di indirizzi assegnati dall’ICANN rispondono, in generale, a criteri di contiguità per area PattavinaReti2021.indb   64PattavinaReti2021.indb   64 14/01/2022   16:08:1414/01/2022   16:08:142.3 Tecniche di commutazione  65
+F-D, dove vengono trasmessi con successo i pacchetti numero 2 e 3. Così il nodo D ha ricevuto 
+due copie identiche dello stesso pacchetto numero 2.
+Si è dunque mostrato come nel servizio datagramma il corretto funzionamento dei proto -
+colli di linea non prevenga a priori eventi indesiderati, quali fuori sequenza, duplicazione e 
+perdita di pacchetti.

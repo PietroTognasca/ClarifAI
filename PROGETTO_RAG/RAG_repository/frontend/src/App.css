@@ -1,0 +1,1238 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+:root {
+  --primary-orange: #F2994A;
+  --primary-coral: #E15A46;
+  --primary-teal: #48A1B0;
+  --primary-blue: #366B95;
+  --primary-dark-blue: #274676;
+  --background-cream: #F9F9F7;
+  --text-dark: #333333;
+  --text-medium: #666666;
+  --text-light: #999999;
+  
+  /* Base colors for light theme */
+  --background-color: #F9F9F7;
+  --surface-color: #FFFFFF;
+  --text-color: #333333;
+  --text-color-secondary: #666666;
+  --text-color-tertiary: #999999;
+  --border-color: #EEEEEE;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --message-user-bg: var(--primary-coral);
+  --message-user-color: white;
+  --message-bot-bg: #f1f1f1;
+  --message-bot-color: #333;
+  --input-bg: white;
+  --input-border: #DDDDDD;
+  --card-bg: white;
+  --header-bg: white;
+  --sidebar-bg: white;
+  --chat-header-bg: var(--primary-teal);
+  --chat-header-color: white;
+}
+
+/* Dark theme */
+:root.dark-mode {
+  --background-color: #121212;
+  --surface-color: #1E1E1E;
+  --text-color: #E0E0E0;
+  --text-color-secondary: #B0B0B0;
+  --text-color-tertiary: #808080;
+  --border-color: #333333;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --message-user-bg: var(--primary-coral);
+  --message-user-color: white;
+  --message-bot-bg: #2A2A2A;
+  --message-bot-color: #E0E0E0;
+  --input-bg: #2A2A2A;
+  --input-border: #444444;
+  --card-bg: #1E1E1E;
+  --header-bg: #1A1A1A;
+  --sidebar-bg: #1A1A1A;
+  --chat-header-bg: var(--primary-dark-blue);
+  --chat-header-color: white;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.app {
+  display: flex;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Sidebar Styles */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 250px; 
+  background-color: var(--sidebar-bg);
+  box-shadow: 0 0 10px var(--shadow-color);
+  transform: translateX(-100%);
+  transition: transform 2s cubic-bezier(0.19, 1, 0.22, 1); 
+  z-index: 1050; 
+  display: flex;
+  flex-direction: column;
+}
+
+/* Add overlay with smooth transition */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1040; 
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1.2s cubic-bezier(0.19, 1, 0.22, 1), visibility 0s 2s;
+}
+
+.sidebar-overlay.active {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 2s cubic-bezier(0.19, 1, 0.22, 1), visibility 0s;
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.sidebar-header h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #666;
+}
+
+.sidebar-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 15px;
+}
+
+.book-list {
+  list-style: none;
+}
+
+.book-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.book-item:hover {
+  background-color: var(--border-color);
+}
+
+.book-item.selected {
+  background-color: #e6f7ff;
+  border-left: 3px solid var(--primary-coral);
+}
+
+.book-icon {
+  margin-right: 12px;
+  font-size: 1.2rem;
+}
+
+.loading, .no-books {
+  padding: 20px;
+  text-align: center;
+  color: #888;
+}
+
+/* Main Content Styles */
+.main-content {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: margin-left 0.3s ease;
+}
+
+.main-content.sidebar-open {
+  margin-left: 300px;
+}
+
+.chat-header {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  background-color: #5FBDBB; 
+  color: white; 
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
+.menu-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: white;
+  margin-right: 15px;
+}
+
+.chat-header h1 {
+  font-size: 1.2rem;
+  font-weight: normal;
+}
+
+.messages-area {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.welcome-message {
+  margin: auto;
+  text-align: center;
+  max-width: 500px;
+}
+
+.welcome-message h2 {
+  margin-bottom: 10px;
+  color: var(--primary-coral);
+}
+
+.welcome-message p {
+  color: #666;
+}
+
+.message {
+  max-width: 80%;
+  padding: 12px 16px;
+  border-radius: 18px;
+  margin-bottom: 15px;
+  line-height: 1.5;
+ 
+}
+
+.message.user {
+  align-self: flex-end;
+  background-color: var(--message-user-bg);
+  color: var(--message-user-color);
+  border-bottom-right-radius: 4px;
+  max-width: 80%; 
+  padding: 12px 16px;
+  border-radius: 18px;
+}
+
+
+.message.bot {
+  align-self: flex-start;
+  background-color: transparent; 
+  color: var(--text-color); 
+  padding: 8px 0; 
+  border-radius: 0; 
+  max-width: 100%; 
+  margin-bottom: 24px; 
+  box-shadow: none; 
+}
+
+/* Also update the message content to extend properly */
+.message.bot .message-content {
+  width: 100%;
+  line-height: 1.6;
+}
+
+.message.system, .message.error {
+  align-self: center;
+  background-color: #fff3f3;
+  color: #ff4d4f;
+  border: 1px solid #ffccc7;
+  text-align: center;
+}
+
+.message.system {
+  background-color: #e6f7ff;
+  color: var(--primary-teal);
+  border: 1px solid var(--primary-teal);
+}
+
+.loading-indicator {
+  display: flex;
+  justify-content: center;
+}
+
+.dot {
+  height: 8px;
+  width: 8px;
+  background-color: #bbb;
+  border-radius: 50%;
+  margin: 0 3px;
+  display: inline-block;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes pulse {
+  0% { transform: scale(0); opacity: 0.5; }
+  50% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(0); opacity: 0.5; }
+}
+
+.input-area {
+  display: flex;
+  padding: 15px 20px;
+  background-color: var(--card-bg);
+  border-top: 1px solid var(--border-color);
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative; 
+}
+
+.input-area input {
+  flex: 1;
+  padding: 12px 15px;
+  border: 1px solid var(--input-border);
+  border-radius: 20px;
+  font-size: 1rem;
+  outline: none;
+  background-color: var(--input-bg);
+  color: var(--text-color);
+}
+
+.input-area input:focus {
+  border-color: var(--primary-coral); 
+  box-shadow: 0 0 0 2px rgba(225, 90, 70, 0.2); 
+}
+
+.input-area .search-btn {
+  position: static; 
+  margin-left: 0.5rem; 
+}
+
+.send-btn {
+  background-color: var(--primary-coral);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 0 20px;
+  margin-left: 10px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.send-btn:disabled {
+  background-color: #bbb;
+  cursor: not-allowed;
+}
+
+.page-input-container {
+  background-color: var(--surface-color);
+  padding: 15px 20px;
+  margin: 0 20px 15px;
+  border-radius: 8px;
+  border: 1px solid var(--primary-teal);
+}
+
+.page-input-row {
+  display: flex;
+  margin-top: 10px;
+}
+
+.page-input-row input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.page-input-row button {
+  background-color: #7b68ee;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 15px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.error-notification {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff3f3;
+  border: 1px solid #ffccc7;
+  color: #ff4d4f;
+  padding: 12px 20px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  z-index: 2000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.error-notification p {
+  margin-right: 15px;
+}
+
+.error-notification button {
+  background: none;
+  border: none;
+  color: #ff4d4f;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+  }
+  
+  .main-content.sidebar-open {
+    margin-left: 0;
+  }
+}
+
+.clarif-ai {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header styles */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem 1rem 5.5rem; 
+  background-color: var(--header-bg);
+  border-bottom: 1px solid var(--border-color);
+  transition: padding-left 2s cubic-bezier(0.19, 1, 0.22, 1), background-color 0.3s, border-color 0.3s;
+  position: relative; 
+  z-index: 1000;
+}
+
+/* When sidebar is open, shift the header to the right */
+body:has(.sidebar.open) .header {
+  padding-left: 280px; /* Slightly more space than sidebar width (250px) */
+}
+
+/* Ensure logo isn't hidden during transition */
+.logo {
+  display: flex;
+  align-items: center;
+  margin-left: 0.8rem; 
+  z-index: 1000; 
+  position: relative;
+  transition: margin-left 2s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.logo h1 {
+  margin-left: 0.5rem;
+  font-size: 1.5rem;
+  color: var(--text-color);
+}
+
+.book-logo {
+  color: #7b68ee;
+  font-size: 1.8rem;
+}
+
+.navigation ul {
+  display: flex;
+  align-items: center; 
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  gap: 2rem;
+}
+
+.navigation a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+.navigation a.active {
+  color: var(--primary-coral);
+}
+
+.get-started-btn {
+  background-color: var(--primary-coral);
+  color: white !important;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  transition: background-color 0.3s;
+}
+
+.get-started-btn:hover {
+  background-color: var(--primary-orange);
+}
+
+/* Main content styles */
+.main-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  margin-top: 1rem;
+  transition: margin-left 2s cubic-bezier(0.19, 1, 0.22, 1); 
+}
+
+.hero-section {
+  text-align: center;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-section h1 {
+  font-size: 2.5rem;
+  color: var(--text-color);
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1rem; 
+  color: var(--text-color-tertiary);
+  max-width: 800px;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.question-box {
+  width: 100%;
+  max-width: 800px;
+  background-color: var(--card-bg);
+  border-radius: 0.5rem;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 10px var(--shadow-color);
+}
+
+.question-box h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 1rem;
+  color: var(--primary-coral);
+}
+
+.search-container input {
+  flex: 1;
+  padding: 0.75rem 1rem 0.75rem 3rem;
+  border: 1px solid var(--input-border);
+  border-radius: 2rem;
+  font-size: 1rem;
+  outline: none;
+  background-color: var(--input-bg);
+  color: var(--text-color);
+}
+
+.search-container input:focus {
+  border-color: var(--primary-coral); 
+  box-shadow: 0 0 0 2px rgba(225, 90, 70, 0.2); 
+}
+
+.search-btn {
+  position: absolute;
+  right: 0.16rem;
+  background-color: var(--primary-coral);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.search-btn:hover {
+  background-color: var(--primary-orange);
+}
+
+.search-btn:disabled {
+  background-color: #bbb;
+}
+
+.bottom-section {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.book-icon-container {
+  margin-bottom: 1rem;
+}
+
+.big-book-icon {
+  font-size: 3rem;
+  color: #7b68ee;
+}
+
+.bottom-section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.bottom-section p {
+  color: #666;
+}
+
+/* Chat Section Styles (existing styles with adjustments) */
+.chat-section {
+  width: 100%;
+  max-width: 1000px;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--card-bg);
+  border-radius: 1rem;
+  box-shadow: 0 2px 10px var(--shadow-color);
+  transition: none; 
+}
+
+.chat-section.sidebar-open {
+  margin-left: 0; 
+}
+
+.chat-header {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  background-color: #5FBDBB; 
+  color: white; 
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
+.chat-header h1 {
+  font-size: 1.2rem;
+}
+
+/* Modification to align sidebar button with the logo */
+.sidebar-toggle {
+  position: fixed;
+  top: 0.87rem; 
+  left: 1.7rem;
+  background: transparent; 
+  color: var(--text-color);
+  border: none;
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  cursor: pointer;
+  z-index: 999;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    padding: 1rem;
+  }
+  
+  .navigation ul {
+    margin-top: 1rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .hero-section h1 {
+    font-size: 2rem;
+  }
+  
+  .question-box {
+    padding: 1.5rem;
+  }
+  
+  .sidebar {
+    width: 100%;
+  }
+  
+  .chat-section.sidebar-open {
+    margin-left: 0;
+  }
+  
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .subtitle-heading {
+    font-size: 1.5rem;
+  }
+  
+  .hero-logo-svg {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+/* Add these styles at the end of the file */
+
+.init-error {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: rgba(255, 77, 79, 0.1);
+  border: 1px solid #ffccc7;
+  border-radius: 0.5rem;
+  text-align: center;
+}
+
+.retry-btn {
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--primary-coral);
+  color: white;
+  border: none;
+  border-radius: 2rem;
+  padding: 0.5rem 1rem;
+  margin-top: 0.5rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.retry-icon {
+  margin-right: 0.5rem;
+}
+
+.sidebar-error {
+  padding: 1rem;
+  margin-top: 1rem;
+  background-color: rgba(255, 77, 79, 0.1);
+  border: 1px solid #ffccc7;
+  border-radius: 0.5rem;
+}
+
+.reload-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary-coral);
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  width: 100%;
+  cursor: pointer;
+}
+
+.no-books {
+  padding: 1rem;
+  text-align: center;
+  color: #999;
+}
+
+/* New styles for the logo */
+.logo-svg {
+  width: 40px;
+  height: 40px;
+}
+
+.search-logo-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.big-logo-icon {
+  width: 60px;
+  height: 60px;
+}
+
+
+
+/* Adapt main container when sidebar is open */
+.main-container.sidebar-open {
+  margin-left: 300px;
+  transition: margin-left 0.3s ease;
+}
+
+/* Modification for sidebar button to always be visible */
+.sidebar-toggle {
+  z-index: 1001;
+}
+
+/* Adjust main content transition */
+.main-container {
+  transition: margin-left 2s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* Responsive design for when sidebar is open */
+@media (max-width: 768px) {
+  .main-container.sidebar-open {
+    margin-left: 0;
+  }
+}
+
+/* Add styles for theme toggle button */
+.theme-toggle-btn {
+  background: transparent; 
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: var(--text-color); 
+  padding: 0.5rem;
+  border-radius: 50%;
+  width: 2.2rem; 
+  height: 2.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s;
+  outline: none;
+  margin-top: -2px; 
+}
+
+/* Update theme icon color for both modes */
+.theme-icon {
+  color: var(--text-color); 
+  font-size: 1rem;
+}
+
+:root.dark-mode .theme-icon {
+  color: var(--text-color); 
+}
+
+/* Update hover style for both buttons */
+.sidebar-toggle:hover, .theme-toggle-btn:hover {
+  background-color: var(--border-color); 
+}
+
+/* Make icon more visible */
+.theme-icon {
+  color: white;
+  font-size: 1rem; 
+}
+
+:root.dark-mode .theme-icon {
+  color: white; 
+}
+
+/* Change moon icon color in light mode */
+.theme-icon {
+  color: #333333; 
+  font-size: 1rem;
+}
+
+/* Keep sun icon white in dark mode */
+:root.dark-mode .theme-icon {
+  color: white;
+}
+
+/* Updates for dark theme */
+:root.dark-mode .welcome-message h2 {
+  color: var(--primary-coral);
+}
+
+:root.dark-mode .welcome-message p {
+  color: var(--text-color-secondary);
+}
+
+:root.dark-mode .book-item.selected {
+  background-color: rgba(72, 161, 176, 0.2);
+}
+
+:root.dark-mode .sidebar-toggle {
+  background: transparent; 
+}
+
+:root.dark-mode .bottom-section h2 {
+  color: var(--text-color);
+}
+
+:root.dark-mode .bottom-section p {
+  color: var(--text-color-secondary);
+}
+
+:root.dark-mode .error-notification {
+  background-color: rgba(255, 77, 79, 0.2);
+}
+
+/* Ensure transitions are smooth */
+.clarif-ai * {
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+
+/* Keep main styles unchanged */
+
+/* Modify title style to make it bigger and more impactful */
+.app-title {
+  margin-left: 0.05rem;
+  font-size: 2rem; /* Increase font size */
+  font-weight: 700; /* Make font more bold */
+  color: var(--text-color);
+  font-family: 'Montserrat', sans-serif; /* More modern, impactful font */
+  letter-spacing: -0.5px; /* Reduce space between letters */
+}
+
+/* Styles for the "AI" part in orange */
+.highlight-ai {
+  background: linear-gradient(45deg, var(--primary-orange), var(--primary-coral), var(--primary-orange), var(--primary-coral));
+  background-size: 300% 300%;
+  animation: 
+    gradientFlow 4s ease infinite,
+    glowPulse 2.5s ease-in-out infinite;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+}
+
+:root.dark-mode .highlight-ai {
+  /* Same properties as light version */
+  background: linear-gradient(45deg, var(--primary-orange), var(--primary-coral), var(--primary-orange), var(--primary-coral));
+  background-size: 300% 300%;
+  animation: 
+    gradientFlow 4s ease infinite,
+    glowPulse 2.5s ease-in-out infinite;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Update "AI" part style to have a gradient effect */
+.highlight-ai {
+  background: linear-gradient(45deg, var(--primary-orange), var(--primary-coral), var(--primary-orange), var(--primary-coral));
+  background-size: 300% 300%;
+  animation: gradientFlow 4s ease infinite;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800; /* Kept existing bold */
+}
+
+/* Make sure it works in dark mode too */
+:root.dark-mode .highlight-ai {
+  background: linear-gradient(45deg, var(--primary-orange), var(--primary-coral), var(--primary-orange), var(--primary-coral));
+  background-size: 300% 300%;
+  animation: gradientFlow 4s ease infinite;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Make sure in dark mode colors remain correct */
+:root.dark-mode .app-title {
+  color: var(--text-color);
+}
+
+:root.dark-mode .highlight-ai {
+  color: var(--primary-coral); /* Keep orange even in dark mode */
+}
+
+/* Add this keyframe animation */
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Add this keyframe animation */
+@keyframes glowPulse {
+  0% { text-shadow: 0 0 5px rgba(225, 90, 70, 0.1); }
+  50% { text-shadow: 0 0 12px rgba(242, 153, 74, 0.4), 0 0 20px rgba(242, 153, 74, 0.2); }
+  100% { text-shadow: 0 0 5px rgba(225, 90, 70, 0.1); }
+}
+
+/* Add these styles for center logo and title */
+
+.center-logo {
+  display: flex;
+  flex-direction: row; /* Changed from column to row to align horizontally */
+  align-items: center; /* Vertical center alignment */
+  justify-content: center; /* Horizontally centered */
+  margin-bottom: 0.5rem; /* Reduced space below */
+  gap: 0.05rem; /* Reduced space between logo and title */
+}
+
+.hero-logo-svg {
+  width: 70px; /* Slightly increased to balance with title */
+  height: 70px;
+  margin-top: 0; /* Removed existing offset */
+}
+
+.hero-title {
+  font-size: 3.2rem; /* Slightly increased */
+  font-weight: 700;
+  margin: 0;
+  padding-bottom: 0.15rem; /* Compensates for optical height difference */
+  margin-top: 0.86rem; /* Added to shift title slightly down */
+  color: var(--text-color);
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: -0.5px;
+  line-height: 1; /* Prevents it from taking more vertical space than needed */
+}
+
+/* Style for subtitle (previously was the h1 title) */
+.subtitle-heading {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin: 0.3rem 0 1rem; /* Reduced top margin */
+  color: var(--text-color-secondary);
+}
+
+/* Update hero section style */
+.hero-section {
+  text-align: center;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Ensure dark mode styles work for new elements too */
+:root.dark-mode .hero-title {
+  color: var(--text-color);
+}
+
+:root.dark-mode .subtitle-heading {
+  color: var(--text-color-secondary);
+}
+
+/* Add this to App.css */
+.sidebar-section-title {
+  font-size: 0.9rem;
+  color: var(--text-color-tertiary);
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  padding-left: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+/* Styles for rendered markdown */
+.message-content h1, 
+.message-content h2, 
+.message-content h3 {
+  margin-top: 16px;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.message-content h1 {
+  font-size: 1.5rem;
+}
+
+.message-content h2 {
+  font-size: 1.3rem;
+}
+
+.message-content h3 {
+  font-size: 1.1rem;
+}
+
+.message-content p {
+  margin-bottom: 12px;
+}
+
+.message-content ul, 
+.message-content ol {
+  margin: 8px 0;
+  padding-left: 24px;
+}
+
+.message-content li {
+  margin: 4px 0;
+}
+
+.message-content code {
+  background-color: var(--border-color);
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+}
+
+.message-content pre {
+  background-color: var(--border-color);
+  padding: 12px;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin: 12px 0;
+}
+
+.message-content blockquote {
+  border-left: 3px solid var(--primary-teal);
+  padding-left: 12px;
+  margin: 12px 0;
+  color: var(--text-color-secondary);
+}
+
+:root.dark-mode .chat-header {
+  background-color: #5FBDBB;
+  color: white;
+  border-bottom: 1px solid #4da8a6; /* Slightly darker border */
+}
+
+/* Style for image mode buttons */
+.image-mode-btn {
+  background-color: var(--primary-teal);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem 0.5rem 0.5rem 0;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+}
+
+.image-mode-btn.active {
+  background-color: var(--primary-coral);
+}
+
+.image-mode-btn:hover {
+  opacity: 0.9;
+}
+
+.image-mode-toggle {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.image-mode-indicator {
+  font-size: 0.9rem;
+  color: var(--primary-coral);
+  margin-left: 0.5rem;
+}
+
+/* Add these styles for bot message header */
+.message-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  gap: 6px;
+}
+
+.message-logo {
+  width: 24px;
+  height: 24px;
+}
+
+.message-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-color);
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: -0.5px;
+}
+
+.message-title-highlight {
+  background: linear-gradient(45deg, var(--primary-orange), var(--primary-coral));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+}

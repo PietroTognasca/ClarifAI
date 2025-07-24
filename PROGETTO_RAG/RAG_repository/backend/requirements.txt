@@ -1,0 +1,9 @@
+PyPDF2
+langchain
+google-generativeai
+chromadb
+python-dotenv
+PyMuPDF
+Pillow
+Flask 
+Flask-Cors
