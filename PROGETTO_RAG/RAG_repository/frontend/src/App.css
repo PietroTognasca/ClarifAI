@@ -537,6 +537,27 @@ body:has(.sidebar.open) .header {
   color: var(--primary-coral);
 }
 
+/* Navigation button styles for accessibility */
+.nav-link {
+  background: none;
+  border: none;
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-link.active {
+  color: var(--primary-coral);
+}
+
+.nav-link:hover {
+  background-color: var(--border-color);
+}
+
 .get-started-btn {
   background-color: var(--primary-coral);
   color: white !important;
