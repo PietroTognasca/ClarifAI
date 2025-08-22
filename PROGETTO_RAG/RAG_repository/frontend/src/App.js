@@ -149,9 +149,10 @@ function App() {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  const isImageQuery = (query) => {
-    return /image|figure|schema|diagram|graphic|photo/i.test(query);
-  };
+  // Utility function to detect if a query is asking about images
+  // const isImageQuery = (query) => {
+  //   return /image|figure|schema|diagram|graphic|photo/i.test(query);
+  // }; // Unused - keeping for future image detection features
 
   // Add this new function to extract page number from a query
   const extractPageNumber = (query) => {
@@ -344,13 +345,13 @@ function App() {
         </div>
         <nav className="navigation">
           <ul>
-            <li><a href="#" className="active" onClick={(e) => {
+            <li><button className="nav-link active" onClick={(e) => {
               e.preventDefault();
               setShowChat(false);
-            }}>Home</a></li>
-            <li><a href="#">My Sessions</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#" className="get-started-btn">Get Started</a></li>
+            }}>Home</button></li>
+            <li><button className="nav-link">My Sessions</button></li>
+            <li><button className="nav-link">About</button></li>
+            <li><button className="nav-link get-started-btn">Get Started</button></li>
             <li>
               <button onClick={toggleTheme} className="theme-toggle-btn">
                 {isDarkMode ? <FaSun className="theme-icon" /> : <FaMoon className="theme-icon" />}
